@@ -3,14 +3,39 @@ import numpy as np
 
 while True:
     # Display the menu options
-    print("1. Calculate the roots of a cubic equation")
-    print("2. Calculate the roots of a quartic equation")
+    print("1. Calculate the roots of a quadratic equation")
+    print("2. Calculate the roots of a cubic equation")
+    print("3. Calculate the roots of a quartic equation")
 
     # User input for the option
-    option = int(input("Enter the option you want (1 or 2): "))
+    option = int(input("Enter the option you want (1, 2, or 3): "))
 
     # User input for coefficients
     if option == 1:
+        a = float(input("Enter coefficient a: "))
+        b = float(input("Enter coefficient b: "))
+        c = float(input("Enter coefficient c: "))
+
+        # Calculate the discriminant
+        discriminant = b**2 - 4*a*c
+
+        # Calculate the roots
+        if discriminant > 0:
+            root1 = (-b + cmath.sqrt(discriminant)) / (2*a)
+            root2 = (-b - cmath.sqrt(discriminant)) / (2*a)
+            print("The roots of the quadratic equation are: ", root1, root2)
+        elif discriminant == 0:
+            root1 = -b / (2*a)
+            print("The quadratic equation has a repeated root: ", root1)
+        else:
+            real_part = -b / (2*a)
+            imaginary_part = cmath.sqrt(abs(discriminant)) / (2*a)
+            root1 = complex(real_part, imaginary_part)
+            root2 = complex(real_part, -imaginary_part)
+            print("The roots of the quadratic equation are complex: ", root1, root2)
+
+    # User input for coefficients
+    if option == 2:
         a = float(input("Enter coefficient a: "))
         b = float(input("Enter coefficient b: "))
         c = float(input("Enter coefficient c: "))
@@ -38,7 +63,7 @@ while True:
         # Print the roots
         print("The roots of the cubic equation are: ", root1, root2, root3)
 
-    elif option == 2:
+    elif option == 3:
         a = float(input("Enter coefficient a: "))
         b = float(input("Enter coefficient b: "))
         c = float(input("Enter coefficient c: "))
